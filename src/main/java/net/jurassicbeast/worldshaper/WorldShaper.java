@@ -2,12 +2,8 @@ package net.jurassicbeast.worldshaper;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
-import net.jurassicbeast.worldshaper.arguments.entityarguments.EntityControls;
-import net.jurassicbeast.worldshaper.arguments.entityarguments.entity.AllayEntityArguments;
-import net.jurassicbeast.worldshaper.arguments.entityarguments.entity.RaiderEntityArguments;
 import net.jurassicbeast.worldshaper.customgamerulesystem.ModGameRulesArgument;
 import net.jurassicbeast.worldshaper.customgamerulesystem.ModGameRulesRegistry;
 import net.jurassicbeast.worldshaper.customgamerulesystem.ModGameRules;
@@ -47,13 +43,6 @@ public class WorldShaper implements ModInitializer {
 		LOGGER.info("Loading payloads.");
 		PayloadTypeRegistry.playS2C().register(DoubleArraySaverPayload.ID, DoubleArraySaverPayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(BooleanArraySaverPayload.ID, BooleanArraySaverPayload.CODEC);
-
-		LOGGER.info("Loading ticking events.");
-		ServerTickEvents.START_SERVER_TICK.register(server -> EntityControls.tickPathfindingEntities());
-		ServerTickEvents.START_SERVER_TICK.register(server -> EntityControls.tickFollowingEntitiesPathfinding());
-
-		ServerTickEvents.START_SERVER_TICK.register(server -> AllayEntityArguments.tickAllayActions());
-		ServerTickEvents.START_SERVER_TICK.register(server -> RaiderEntityArguments.tickAllayActions());
 
 		LOGGER.info("Registering gamerules.");
 		ModGameRulesRegistry.registerRules();

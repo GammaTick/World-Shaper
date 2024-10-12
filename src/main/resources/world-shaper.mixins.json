@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "net.jurassicbeast.worldshaper.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"RaidMixin",
+		"BellBlockEntityMixin",
+		"BoatEntityMixin",
+		"WaterFluidMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
